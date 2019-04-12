@@ -8,9 +8,9 @@ public class Flight {
 	private LocalTime hour;
 	private String airline;
 	private String destinationCity;
-	private String boardingGate;
+	private int boardingGate;
 	
-	public Flight(LocalDate date, LocalTime hour, String airline, String destinationCity, String boardingGate) {
+	public Flight(LocalDate date, LocalTime hour, String airline, String destinationCity, int boardingGate) {
 		this.date = date; 
 		this.hour = hour;
 		this.airline = airline;
@@ -34,7 +34,7 @@ public class Flight {
 		return destinationCity;
 	}
 	
-	public String getBoardingGate(){
+	public int getBoardingGate(){
 		return boardingGate;
 	}
 	
