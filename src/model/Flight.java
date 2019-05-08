@@ -12,6 +12,8 @@ public class Flight implements Comparable<Flight>{
 	private String numFlight;
 	private String destinationCity;
 	private int boardingGate;
+	private Flight next;
+	private Flight prev;
 	
 	public Flight(LocalDate date, LocalTime hour, String airline,String numFlight, String destinationCity, int boardingGate) {
 		this.date = date; 
@@ -50,7 +52,7 @@ public class Flight implements Comparable<Flight>{
 	public int compareTo(Flight other) {
 		int comparation ;
 		String TimeOne = ""+date+""+hour;
-		String TimeTwo = ""+other.date+""+hour;
+		String TimeTwo = ""+other.date+""+other.hour;
 		if(TimeOne.compareTo(TimeTwo) > 0) {
 			comparation = 1;
 		}else if(TimeOne.compareTo(TimeTwo) < 0) {
@@ -64,6 +66,22 @@ public class Flight implements Comparable<Flight>{
 	
 	public String toString() {
 		String time = hour.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
-		return "Date: "+date+"	Time: "+time+"	Airline:"+airline+"	Number Flight: "+numFlight+"	DestinationCity: "+destinationCity+"	Boarding Gate: "+boardingGate;
+		return ""+date+"	"+time+"	"+airline+"	"+numFlight+"	"+destinationCity+"	"+boardingGate;
+	}
+
+	public Flight getNext() {
+		return next;
+	}
+
+	public void setNext(Flight next) {
+		this.next = next;
+	}
+
+	public Flight getPrev() {
+		return prev;
+	}
+
+	public void setPrev(Flight prev) {
+		this.prev = prev;
 	}
 }

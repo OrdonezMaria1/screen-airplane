@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import model.Flight;
 import model.ScreenAirplane;
 
 public class ScreenAirplaneController {
@@ -30,7 +31,7 @@ public class ScreenAirplaneController {
 
     @FXML
     void airline(ActionEvent event) {
-
+    	
     }
 
     @FXML
@@ -55,18 +56,22 @@ public class ScreenAirplaneController {
 
     @FXML
     public void generate(ActionEvent event) throws IOException {
-    	int num =Integer.parseInt(answer1.getText());
-    	screenAirplane = new ScreenAirplane(num);
-    	screenAirplane.createFlight(num);
+    	
+    	int cant = Integer.parseInt(answer1.getText());
+    	screenAirplane = new ScreenAirplane(cant);
     	GridPane gridPane = new GridPane();
     	pane.getChildren().add(gridPane);
-    	
-    	for(int j = 0; j<1; j++) {
-    		for(int k = 0; k<num; k++) {
-    			gridPane.add(new Label(""+screenAirplane.getFlights()[j].toString()+"        "),1,k);
-    		}
+    	Flight current = screenAirplane.getfirFlights();
+    	gridPane.add(new Label("	Date		Time		Airline		NumFlight		Destination City  BoardingGate"), 0, 0);
+    	gridPane.add(new Label (""), 0, 1);
+    	int i = 2;
+    	while(current != null) {
+    		gridPane.add(new Label(""+current.toString()), 0, i);
+			current =current.getNext();
+			i++;
     	}
     }
+    
 
     @FXML
     void hour(ActionEvent event) {
